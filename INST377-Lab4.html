@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title>Interactive Page</title>
+        <style>
+            .section {
+                border: 10px solid black;
+                padding: 30px;
+                margin: 20px;
+            }
+
+            body {
+                transition: background-color 0.5s ease;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1 id="heading">Interactive Page</h1>
+        
+        <div class="section" id="alert-section">
+            <h2>Alert Me Section</h2>
+            <form onsubmit="return false;">
+                <label for="name">Enter your name:</label>
+                <input type="text" id="name" required>
+                <button type="button" onclick="showAlert()">Alert Me</button>
+            </form>
+        </div>
+
+        <div class="section" id="color-section">
+            <h2> Change Background Color</h2>
+            <button onclick="changeColor()">Change Color</button>
+        </div>
+
+        <div class="section" id="text-tester">
+            <h2>Test Tester Section</h2>
+            <form onsubmit="return false;">
+                <label for="text">Enter some text:</label>
+                <input type="text" id="text" required>
+                <button type="button" onclick="validateText()">Validate Text</button>
+            </form>
+        </div>
+
+        <div class="section" id="add-text-section">
+            <h2>Add Text Section</h2>
+            <button onclick="addText()">Add Text</button>
+        </div>
+
+        <script>
+            function showAlert() {
+                let name = document.getElementById("name").value;
+                alert("Hello " + name + "!");
+            }
+
+            let isBlue = true;
+            function changeColor() {
+                if (isBlue) {
+                    document.body.style.backgroundColor = "green";
+                } else {
+                    document.body.style.backgroundColor = "blue";
+                }
+                isBlue = !isBlue;
+            }
+
+            function validateText() {
+                let text = document.getElementById("text").value;
+                let validation = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+                if (!text) {
+                    alert("Please enter some text");
+                } else if (validation.test(text)) {
+                    alert("Special characters are not allowed!");
+                } else {
+                    alert("Text is valid");
+                }
+            }
+
+            function addText() {
+                let heading = document.getElementById("heading");
+                heading.textContent += " Add Text";
+            }
+        </script>
+</hmtl>
